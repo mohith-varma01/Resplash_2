@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:resplash/views/home.dart';
+import 'package:resplash/views/login_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -18,19 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: FutureBuilder(
-        future: _initialization,
-        builder: (context, snapshot){
-          if(snapshot.hasError){
-            print("Error");
-          }
-          if (snapshot.connectionState == ConnectionState.done){
-            //print("Success");
-            return Home();
-          }
-          return CircularProgressIndicator();
-        },
-      ),
+      home: LoginPage(),
     );
   }
 }
